@@ -25,4 +25,20 @@ main {
 
 li {
     display: inline;
+    padding: 0px 20px;
+    text-decoration: none;
 }
+
+a {
+    text-decoration: none;
+    /*color: #FDF8F5;*/
+}
+
+header,
+footer {
+  height: 60px;
+  width: 100%;
+  line-height: 60px;
+  background-color: #15bd8d;
+}
+

@@ -1,3 +1,8 @@
+/*  This is a reset style-sheet. Its features are:
+    - clears default formatting from browsers
+    - the reset is linked first in html
+    - more specific / stylized sheets are linked on top of it (after)
+*/
 /* Resets the box size of every element */
 * {
     margin: 0;
