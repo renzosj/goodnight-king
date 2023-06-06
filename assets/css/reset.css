@@ -11,9 +11,9 @@
   }
   
   /* Gives the body element a parent height to compare against */
-  html {
+  /* html {
     height: 100%;
-  }
+  } */
   
   body {
     min-height: 100%;
