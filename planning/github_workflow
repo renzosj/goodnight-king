@@ -1,0 +1,49 @@
+Set up
+- initialize local repo (git init)
+- set up remote connection (git remote set-url origin git@github.com:renzosj/debug-thugs-project-2.git)
+- Pull in main branch (git pull origin main)
+
+
+Git/gihub Workflow
+- run [ git status ] anytime to check your branch updatedness
+- run [ git pull origin main ] on main branch
+  - keep up to date on feature branches + any changes
+- On CLI, [ git checkout branch_name ] into working branch before making any changes (e.g. git checkout feature/some-feature) NOT main branch
+- make changes on local files
+- stage changes [ git add -A ]
+- commit changes + message [ git commit -m "message here" ]
+- push changes to remote branch (git push origin feature/some-feature)
+- Make a Pull Request on github repo
+  - Get changes approved
+  - Merge branches
+- After confirming branch merge, checkout to main (git checkout main)
+- run git pull to finish workflow (git pull origin main)
+- Do it again!
+
+
+What if somebody made changes and I'm still working on a branch?
+- Time to stash! run (git stash) while working on your branch
+- git checkout main
+- git pull origin main (update local repo with the new changes from remote)
+- git checkout [branch_name] (return to what you were working on!)
+- git stash pop (bring back your changes!)
+
+
+Project Workflow
+- Morning routine/ coffee! Stretches are key
+- Check Project Repository on GitHub, Slack messages, and open the project on git bash to check in on any changes
+- Check Project Issues on GitHub
+- Choose an issue to tackle, moving the appropriate Project sticky from 'Must Do' to 'In Progress'
+- Report any issues to pm or team member
+- Keep a summary of your work on each issue to report to our Stand up Meetings. It's extra work, I know, but this is important in keeping with the Agile manifesto. 
+
+Not sure what to work on? Start here!
+- Would you like to work on Front end or Back end?
+  - In Front End, would you like to work on html/css or logic (javascript)?
+    - If html, navigate to the views directory and check in on GitHub issues relating to views (working with handlebars)
+    - if css, navigate to public/css folder, check issues
+    - if logic, navigate to public/scripts folder, check issues
+  - In Back End, database, logic, or controllers?
+    - if controllers, navigate to controllers directory, check issues
+    - if database, navigate to db and models directories, check issues
+    - if logic, navigate to server.js and utils directory, check issues
