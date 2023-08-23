@@ -1,0 +1,38 @@
+[
+    {
+        "username": "user1",
+        "pronouns": "She/her",
+        "title": "Miss",
+        "email": "test1@test.com"
+    },
+    {
+        "username": "user2",
+        "pronouns": "He/him",
+        "title": "Mr",
+        "email": "test2@test.com"
+    },
+    {
+        "username": "user3",
+        "pronouns": "They/them",
+        "title": "Mx",
+        "email": "test3@test.com"
+    },
+    {
+        "username": "user4",
+        "pronouns": "He/him",
+        "title": "Warlock",
+        "email": "test4@test.com"
+    },
+    {
+        "username": "user5",
+        "pronouns": "She/her",
+        "title": "Queen",
+        "email": "test5@test.com"
+    },
+    {
+        "username": "user6",
+        "pronouns": "Bob",
+        "title": "Big",
+        "email": "test6@test.com"
+    }
+]

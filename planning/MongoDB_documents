@@ -1,0 +1,10 @@
+- users
+- chats
+- messages
+
+
+Users has many Chats, Messages, friends
+
+Chats has many Messages, Users
+
+Messages has one User, one Chat
