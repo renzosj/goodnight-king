@@ -12,38 +12,72 @@ db.once('open', async () => {
     console.log('\n Collections dropped...');
 
     try {
-        const userDoc = await User.insertMany(userSeeds);
-        const chatDoc = await Chat.insertMany(chatSeeds);
-        const messageDoc = await Message.insertMany(messageSeeds);
+        //Create and save Users
+        const createdUsers = await User.create(userSeeds);
+        console.log('Users seeded successfully');
 
-        userDoc.forEach(user => {
-            // Get array of chat IDs this user belongs to
-            const chatIds = [];
-            for (const chat of chatDoc) {
-                chatIds.push(chat._id);
+        // Create and save Chats, modifying the chatSeeds array to include relations with users through username field
+        const createdChats = await Chat.create(
+            chatSeeds.map(chatSeed => ({
+                chatName: chatSeed.chatName,
+                users: chatSeed.users.map(username =>
+                    createdUsers.find(user =>
+                        user.username === username)._id)
+            }))
+        );
+
+        console.log('Chats seeded successfully');
+
+        const createdMessages = await Message.create(
+            messageSeeds.map(messageSeed => ({
+                messageText: messageSeed.messageText,
+                user: createdUsers.find(user =>
+                    user.username === messageSeed.user)._id,
+                chat: createdChats.find(chat =>
+                    chat.chatName === messageSeed.chat)._id
+            }))
+        );
+
+        // update Chat documents with Message _ids
+        try {
+            for (const message of createdMessages) {
+                await Chat.findOneAndUpdate(
+                    { _id: message.chat},
+                    { $push: { messages: message._id}}
+                )
             }
+        } catch (err) {
+            console.log(err);
+        }
 
-            Chat.updateOne(
-                { _id: { $in: chatIds } },
-                { $push: { users: user._id } }
-            );
-        })
-
-        messageDoc.forEach(message => {
-            // Get chat ID this message belongs to 
-            const chatId = message.chat;
-            Chat.updateOne(
-                { _id: chatId },
-                { $push: { messages: message._id } }
-            )
-        });
+        // Debug version of Message create
+        // await Message.create(
+        //     messageSeeds.map(messageSeed => {
+        //       const user = createdUsers.find(user => user.username === messageSeed.user);
+        //       const chat = createdChats.find(chat => chat.chatName === messageSeed.chat);
+          
+        //       console.log('Processing messageSeed:', messageSeed);
+        //       console.log('Found user:', user);
+        //       console.log('Found chat:', chat);
+          
+        //       if (user && chat) {
+        //         return {
+        //           messageText: messageSeed.messageText,
+        //           user: user._id,
+        //           chat: chat._id
+        //         };
+        //       } else {
+        //         console.log('User or chat not found for:', messageSeed);
+        //       }
+        //     })
+        //   );
+          
+        console.log('Message seeded successfully');
 
     } catch (err) {
-        console.log("Error with seeding users: " + err);
+        console.log("Error with seeding data: " + err);
     }
-
     console.log('\n 🌱 Seeding complete! 🌱');
-
 
     process.exit(0);
 });
