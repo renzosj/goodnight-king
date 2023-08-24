@@ -12,11 +12,11 @@ const typeDefs = gql`
     type User {
         _id: ID!
         username: String!
+        firstName: String!
+        lastName: String!
         email: String!
         pronouns: String
         title: String
-        messages: [Message]
-        chats: [Chat]
         friends: [User]
     }
 
@@ -32,18 +32,19 @@ const typeDefs = gql`
         _id: ID!
         messagetext: String!
         createdAt: Date
-        username: String!
         delaySend: Boolean!
         user: User
         chat: Chat
     }
 
     type Query {
-
+        getAllUsers: [User]
+        getMessages: [Chat.messages]
+        getAllChats: [Chat]
     }
 
     type Mutation {
-        
+        createMessage(messageText: String!, delaySend: Boolean, user: )
     }
 `
 
