@@ -1,12 +1,13 @@
 const { gql } = require('apollo-server-express');
-import { GraphQLScalarType } from 'graphql';
+// import { GraphQLScalarType } from 'graphql';
+// const { GraphQLScalarType } = require('graphql');
 
-const Date = new GraphQLScalarType({
-  name: 'Date',
-  description: 'A date scalar type.',
-  parseValue: (value) => new Date(value),
-  serialize: (value) => value.toISOString(),
-});
+// const Date = new GraphQLScalarType({
+//   name: 'Date',
+//   description: 'A date scalar type.',
+//   parseValue: (value) => new Date(value),
+//   serialize: (value) => value.toISOString(),
+// });
 
 const typeDefs = gql`
     type User {
@@ -23,29 +24,30 @@ const typeDefs = gql`
     type Chat {
         _id: ID!
         chatName: String!
-        createdAt: Date
+        createdAt: String
         messages: [Message]
         users: [User]
     }
 
     type Message {
         _id: ID!
-        messagetext: String!
-        createdAt: Date
+        messageText: String!
+        createdAt: String
         delaySend: Boolean!
-        user: User
-        chat: Chat
+        user: User!
+        chat: Chat!
     }
 
     type Query {
         getAllUsers: [User]
-        getMessages: [Chat.messages]
+        getAllMessages: [Message]
         getAllChats: [Chat]
     }
 
     type Mutation {
-        createMessage(messageText: String!, delaySend: Boolean, user: )
+        createUser(username: String!, firstName: String!, lastName: String, email: String!, pronouns: String, title: String): User
     }
 `
 
+// getMessages(_id: ID!): [Chat.messages]
 module.exports = typeDefs;
