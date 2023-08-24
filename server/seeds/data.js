@@ -20,22 +20,22 @@ const userSeeds = [
         firstName: "Leslie",
         pronouns: "They/them",
         title: "Mx",
-        email: "test3@test.com"
+        email: "test3@test.com",
     },
     {
         username: "user4",
         firstName: "Jordan",
-        last: "Lockhart",
+        lastName: "Lockhart",
         pronouns: "He/him",
         title: "Warlock",
-        email: "test4@test.com"
+        email: "test4@test.com",
     },
     {
         username: "user5",
         firstName: "Shiva",
         pronouns: "She/her",
         title: "Queen",
-        email: "test5@test.com"
+        email: "test5@test.com",
     },
     {
         username: "user6",
@@ -43,67 +43,68 @@ const userSeeds = [
         lastName: "Bob",
         pronouns: "Bob",
         title: "Big",
-        email: "test6@test.com"
-    }
-]
-
-const chatSeeds = [
-    {
-        // user: [userSeeds[0], userSeeds[1]],
-        chatName: `Chat with `,
-        users: [],
-        messages: []
-    },
-    {
-        // user: [userSeeds[3], userSeeds[5]],
-        chatName: `Chat with `,
-        users: [],
-        messages: []
-    },
-    {
-        // user: [userSeeds[2], userSeeds[4]],
-        chatName: `Chat with `,
-        users: [],
-        messages: []
-    },
-    {
-        // user: [userSeeds[3], userSeeds[4], userSeeds[5]],
-        chatName: `Chat with ${teamName}`,
-        users: [],
-        messages: []
+        email: "test6@test.com",
     }
 ]
 
 const messageSeeds = [
     {
-        // user: userSeeds[3],
-        // chat: chatSeeds[4],
-        messageText: "Get ready to present our project."
+        user: 'user4',
+        chat: `Chat with ${teamName}`,
+        messageText: "Get ready to present our project.",
     },
     {
-        // user: userSeeds[2],
-        // chat: chatSeeds[4],
-        messageText: "I'm not ready for this project!"
+        user: 'user3',
+        chat: `Chat with ${teamName}`,
+        messageText: "I'm not ready for this project!",
+
     },
     {
-        // user: userSeeds[0],
-        // chat: chatSeeds[0],
-        messageText: "Hi can you approve my pr?"
+        user: 'user1',
+        chat: `Chat with Melanie and Johnny`,
+        messageText: "Hi can you approve my pr?",
+
     },
     {
-        // user: userSeeds[1],
-        // chat: chatSeeds[0],
-        messageText: "This is just spaghetti"
+        user: 'user2',
+        chat: `Chat with Melanie and Johnny`,
+        messageText: "This is just spaghetti",
+
     },
     {
-        // user: userSeeds[2],
-        // chat: chatSeeds[2],
-        messageText: "Goodnight QUEEN<3"
+        user: "user5",
+        chat: `Chat with Shiva and Leslie`,
+        messageText: "Goodnight QUEEN<3",
+ 
     },
     {
-        // user: userSeeds[5],
-        // chat: chatSeeds[1],
-        messageText: "gn king stay flexy"
+        user: "user6",
+        chat: `Chat with Jordan and Bob`,
+        messageText: "gn king stay flexy",
+
+    }
+]
+
+const chatSeeds = [
+    {
+        users: ['user1', 'user2'],
+        chatName: `Chat with Melanie and Johnny`,
+        messages: []
+    },
+    {
+        users: ['user4', 'user6'],
+        chatName: `Chat with Jordan and Bob`,
+        messages: []
+    },
+    {
+        users: ['user3', 'user5'],
+        chatName: `Chat with Shiva and Leslie`,
+        messages: []
+    },
+    {
+        users: ['user4', 'user5', 'user6'],
+        chatName: `Chat with ${teamName}`,
+        messages: []
     }
 ]
 

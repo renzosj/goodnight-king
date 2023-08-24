@@ -34,18 +34,15 @@ const userSchema = new Schema(
             type: String,
             trim: true
         },
-        messages: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Message'
-        }],
-        chats: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Chat'
-        }],
-        friends: [{
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }]
+        // messages: [{
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'Message'
+        // }],
+        // chats: [{
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'Chat'
+        // }],
+        friends: [{ type: Schema.Types.ObjectId, ref: 'User'}]
     }
 );
 

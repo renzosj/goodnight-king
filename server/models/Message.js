@@ -16,14 +16,8 @@ const messageSchema = new Schema(
             default: Date.now,
             get: date => formattedDate(date)
         },
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        },
-        chat: {
-            type: Schema.Types.ObjectId,
-            ref: 'Chat'
-        },
+        user: { type: Schema.Types.ObjectId, ref: 'User' },
+        chat: { type: Schema.Types.ObjectId, ref: 'Chat' },
         delaySend: {
             type: Boolean,
             required: true,
