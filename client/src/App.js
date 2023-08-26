@@ -14,21 +14,15 @@ import Login from "./pages/Login";
 import Navbar from "./components/Navbar"; // Make sure you have the correct path to Navbar
 import Home from "./pages/Home"; // Import the Home component
 import Dashboard from "./pages/dashboard";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
-});
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("id_token");
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  };
 });
 
 const client = new ApolloClient({
@@ -37,20 +31,34 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [currentForm, setCurrentForm] = useState("login");
+
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
+  };
+
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div className="App">
-          <Navbar /> {/* Use the Navbar component */}
-          <Switch>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Switch>
-        </div>
-      </Router>
-    </ApolloProvider>
+    <Router>
+      {" "}
+      {/* Wrap your content in Router */}
+      <div className="App">
+        <Navbar /> {/* Use the Navbar component */}
+        <Switch>
+          <Route path="/login">
+            <Login onFormSwitch={toggleForm} />
+          </Route>
+          <Route path="/register">
+            <Register onFormSwitch={toggleForm} />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard onFormSwitch={toggleForm} />
+          </Route>
+          <Route path="">
+            <Home /> {/* Define a Home component */}
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

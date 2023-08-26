@@ -1,24 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-//import { LOGIN_USER } from "../utils/mutations";
 
 export const Login = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [formData, setFormData] = useState({ email: "", password: "" });
-
-  const [login, { error }] = useMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email);
     // ... your authentication logic ...
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   return (
