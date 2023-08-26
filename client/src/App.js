@@ -6,17 +6,45 @@ import { Register } from "../src/pages/Register";
 import Navbar from "./pages/Navbar"; // Make sure you have the correct path to Navbar
 import Home from "./pages/Home"; // Import the Home component
 import Dashboard from "./pages/dashboard";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
+const [setCurrentForm] = useState('login');
+
+const toggleForm = (formName) => {
+  setCurrentForm(formName);
+}
 
 
 function App() {
-    const [currentForm, setCurrentForm] = useState("login");
-
-    const toggleForm = (formName) => {
-        setCurrentForm(formName);
-    };
 
     return (
+      <ApolloProvider client={client}>
         <Router> {/* Wrap your content in Router */}
             <div className="App">
                 <Navbar /> {/* Use the Navbar component */}
@@ -36,6 +64,7 @@ function App() {
                 </Switch>
             </div>
         </Router>
+        </ApolloProvider>
     );
 }
 

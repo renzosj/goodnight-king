@@ -1,15 +1,34 @@
 import React, { useState } from "react";
+import { LOGIN_USER } from '../utils/mutations'
+import { useMutation } from '@apollo/client';
 
 
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [login] = useMutation(LOGIN_USER);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(email);
-        // ... your authentication logic ...
-    }
+        try {
+            const { data } = await login({
+              variables: { ...formState },
+            });
+      
+            Auth.login(data.login.token);
+          } catch (e) {
+            console.error(e);
+          }
+      
+          // clear form values
+          setFormState({
+            email: '',
+            password: '',
+          });
+
+        };
+      
 
     return (
         <div className="login-container"> {/* Apply the styling class */}
