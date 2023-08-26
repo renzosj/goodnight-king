@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ApolloClient,
   InMemoryCache,
@@ -6,23 +6,29 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Navbar from "./components/Navbar"; // Make sure you have the correct path to Navbar
-import Home from "./pages/Home"; // Import the Home component
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 import Dashboard from "./pages/dashboard";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from "@apollo/client";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem("id_token");
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
 });
 
 const client = new ApolloClient({
@@ -31,34 +37,20 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [currentForm, setCurrentForm] = useState("login");
-
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  };
-
   return (
-    <Router>
-      {" "}
-      {/* Wrap your content in Router */}
-      <div className="App">
-        <Navbar /> {/* Use the Navbar component */}
-        <Switch>
-          <Route path="/login">
-            <Login onFormSwitch={toggleForm} />
-          </Route>
-          <Route path="/register">
-            <Register onFormSwitch={toggleForm} />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard onFormSwitch={toggleForm} />
-          </Route>
-          <Route path="">
-            <Home /> {/* Define a Home component */}
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <div className="App">
+          <Navbar /> {/* Use the Navbar component */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 
