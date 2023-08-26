@@ -13,9 +13,8 @@ const typeDefs = gql`
     type User {
         _id: ID!
         username: String!
-        password: String
         firstName: String!
-        lastName: String!
+        lastName: String
         email: String!
         pronouns: String
         title: String
@@ -39,6 +38,21 @@ const typeDefs = gql`
         chat: Chat
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
+    input updateUserInput {
+        username: String
+        password: String
+        firstName: String
+        lastName: String
+        email: String
+        pronouns: String
+        title: String
+    }
+
     type Query {
         getAllUsers: [User]
         getAllMessages: [Message]
@@ -52,8 +66,11 @@ const typeDefs = gql`
 
         updateUser(id: ID!, password: String, firstName: String, lastName: String, pronouns: String, title: String) : User
         updateChat(id: ID!, chatName: String!) : Chat
+
+        login(email: String!, password: String!) : Auth
+        signUp(username: String!, firstName: String!, email: String!, password: String!): Auth
     }
 `
-
+// input: updateUserInput
 // getMessages(_id: ID!): [Chat.messages]
 module.exports = typeDefs;
