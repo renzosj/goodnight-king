@@ -1,25 +1,37 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 import { SIGN_UP } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 
-export const Register = (props) => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [firstName, setName] = useState("");
+export const Register = () => {
+  const [formState, setFormState] = useState({
+    userName: "",
+    firstName: "",
+    email: "",
+    password: "",
+  });
+
+  const [signUp, { error, data }] = useMutation(SIGN_UP);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
+    console.log(formState);
     try {
       const { data } = await signUp({
-        variables: {
-          email: email,
-          password: pass,
-          firstName: firstName,
-        },
+        variables: { ...formState },
       });
       Auth.login(data.signUp.token);
     } catch (err) {
@@ -27,47 +39,55 @@ export const Register = (props) => {
     }
   };
 
-  const [signUp, { error }] = useMutation(SIGN_UP);
-
   return (
     <div className="register-container">
-      {" "}
-      {/* Use a div to contain the section */}
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
+      {data ? (
+        <p>
+          Success! You may now head <Link to="/">back to the homepage.</Link>
+        </p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="userName">Username</label>
+          <input
+            className="form-input"
+            placeholder="Your Username"
+            name="userName"
+            type="text"
+            value={formState.userName}
+            onChange={handleChange}
+          />
           <label htmlFor="firstName">First Name</label>
           <input
-            value={firstName}
-            onChange={(e) => setName(e.target.value)}
-            name="firstName"
-            id="name"
+            className="form-input"
             placeholder="First Name"
+            name="firstName"
+            type="text"
+            value={formState.firstName}
+            onChange={handleChange}
           />
-        </div>
-        <div className="input-container">
           <label htmlFor="email">E-mail</label>
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="youremail@gmail.com"
-            id="email"
+            className="form-input"
+            placeholder="Your email"
             name="email"
+            type="email"
+            value={formState.email}
+            onChange={handleChange}
           />
-        </div>
-        <div className="input-container">
           <label htmlFor="password">Password</label>
           <input
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-            type="password"
-            placeholder="********"
-            id="password"
+            className="form-input"
+            placeholder="******"
             name="password"
+            type="password"
+            value={formState.password}
+            onChange={handleChange}
           />
-        </div>
-        <button className="register-button">Register</button>
-      </form>
+          <button className="register-button">Register</button>
+        </form>
+      )}
+      {error && <div>{error.message}</div>}
+
       <button type="submit" className="switch-button">
         Already have an account? Login here.
       </button>
