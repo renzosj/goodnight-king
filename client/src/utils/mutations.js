@@ -10,18 +10,38 @@ export const CREATE_CHAT = gql`
     }
 `;
 export const SIGN_UP = gql`
-    mutation signUp($username: String!, $email: String!, $password: String!, $firstName: String!) {
-        signUp(username: $username, email: $email, password: $password, firstName: $firstName) {
-        token
-        user {
-            _id
-            username
-            firstName
-            lastName
-            email
-            pronouns
-            title
+mutation Mutation($userName: String!, $firstName: String!, $email: String!, $password: String!) {
+    signUp(username: $userName, firstName: $firstName, email: $email, password: $password) {
+      token
+      user {
+        email
+        firstName
+        friends {
+          lastName
+          pronouns
+          title
+          username
         }
-        }
+      }
     }
-`
+  } 
+`;
+
+export const LOGIN_USER = gql`
+mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        email
+        firstName
+        friends {
+          lastName
+          pronouns
+          title
+          username
+        }
+      }
+    }
+  }
+  `;
