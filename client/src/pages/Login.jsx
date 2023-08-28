@@ -41,7 +41,7 @@ export const Login = () => {
     <div className="login-container">
         {data ? (
         <p>
-          Success! You may now head <Link to="/">back to the homepage.</Link>
+          Success! Click here to get to your dashoard <Link to="/dashboard">back to the homepage.</Link>
         </p>
       ) : (
       <form onSubmit={handleSubmit}>
