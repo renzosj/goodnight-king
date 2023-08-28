@@ -1,41 +1,72 @@
 import React from "react";
 
-const Dashboard = ({ user }) => {
+import image1 from "../images/house_1f3e0.png";
+import image2 from "../images/gear_2699-fe0f.png"; 
+import image3 from "../images/speech-balloon_1f4ac.png"; 
+import image4 from "../images/house_1f3e0.png";  
+
+const projects = [
+  {
+    id: 1,
+    imageUrl: image1, 
+    link: "/homepage1",
+    title: "Homepage 1",
+  },
+
+  {
+    id: 2,
+    imageUrl: "",
+    link: "/homepage2",
+    title: "Chat",
+  },
+  {
+    id: 3,
+    imageUrl: image3,
+    link: "/homepage3",
+    title: "Create Message",
+  },
+  {
+    id: 4,
+    imageUrl: image2,
+    link: "/homepage1",
+    title: "Profile Settings",
+  },
+  {
+    id: 5,
+    imageUrl: "url_to_your_image2",
+    link: "/homepage2",
+    title: "E-Mail",
+  },
+  {
+    id: 6,
+    imageUrl: "url_to_your_image3",
+    link: "/homepage3",
+    title: "Filler Box",
+  },
+  // Add more projects as needed
+];
+
+function renderProjects() {
+    return projects.map((project) => (
+      <div key={project.id} className="project-box">
+        <a href={project.link}>
+          <img src={project.imageUrl} alt={project.title} />
+        </a>
+        <h3>{project.title}</h3> {/* Include the label */}
+      </div>
+    ));
+  }
+  
+  const Dashboard = ({ user }) => {
     return (
-        <div>
-            <h1>Welcome to your dashboard, {user.first_name}!</h1>
-
-            <div className="container mt-5">
-                <div className="row">
-                    <div className="col-md-4">
-                        <div className="card p-3">
-                            <div className="d-flex flex-row mb-3">
-                                <img src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/svg/1f3e0.svg" width="70" alt="" />
-                                <div className="d-flex flex-column ml-2">
-                                    <span>Homepage</span>
-                                    <span className="text-black-50"></span>
-                                    <span className="ratings">
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <h6>Return back to the homepage.</h6>
-                            <div className="d-flex justify-content-between install mt-3">
-                                <span className="text-primary">
-                                    <p><a href="/homepage">Click Here</a></p>
-                                    <i className="fa fa-angle-right"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Other col-md-4 sections go here */}
-                </div>
-            </div>
+      <div className="dashboard-container">
+        <h1>Welcome to your dashboard, {user.first_name}!</h1>
+  
+        <div className="container mt-5">
+          <div className="projects-container">{renderProjects()}</div>
         </div>
+      </div>
     );
-};
-
-export default Dashboard;
+  };
+  
+  export default Dashboard;
