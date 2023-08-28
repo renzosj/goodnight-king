@@ -1,36 +1,66 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-export const Login = (props) => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+
+import Auth from "../utils/auth";
+
+export const Login = () => {
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [logIn, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
-    // ... your authentication logic ...
+    console.log(formState);
+    try {
+      const { data } = await logIn({
+        variables: { ...formState },
+      });
+      Auth.login(data.logIn.token);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
     <div className="login-container">
-      {" "}
-      {/* Apply the styling class */}
+        {data ? (
+        <p>
+          Success! You may now head <Link to="/">back to the homepage.</Link>
+        </p>
+      ) : (
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label htmlFor="email">E-mail</label>
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="youremail@gmail.com"
             id="email"
             name="email"
+            value={formState.email}
+            onChange={handleChange}
           />
         </div>
         <div className="input-container">
           <label htmlFor="password">Password</label>
           <input
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
+            value={formState.password}
+            onChange={handleChange}
             type="password"
             placeholder="********"
             id="password"
@@ -39,8 +69,9 @@ export const Login = (props) => {
         </div>
         <button className="login-button">Login</button>
       </form>
+      )}
       <button
-        onClick={() => props.onFormSwitch("register")}
+        // onClick={() => props.onFormSwitch("register")}
         className="switch-button"
       >
         Don't have an account? Register here.
