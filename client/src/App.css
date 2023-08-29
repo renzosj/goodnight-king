@@ -142,3 +142,26 @@ input {
   text-decoration: none;
   color: white;
 }
+
+/* Dashboard.css */
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.project-box {
+  border: 5px solid #ccc;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.project-box img {
+  max-width: 300%;
+  height: auto;
+}
+

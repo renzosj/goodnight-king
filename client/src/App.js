@@ -20,9 +20,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
   const token = localStorage.getItem("id_token");
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
@@ -37,16 +35,22 @@ const client = new ApolloClient({
 });
 
 function App() {
+  // Replace with your actual user data
+  const user = {
+    first_name: "John", // Example first name
+    // Other user properties...
+  };
+
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-          <Navbar /> {/* Use the Navbar component */}
+          <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard user={user} />} />
           </Routes>
         </div>
       </Router>
@@ -55,6 +59,7 @@ function App() {
 }
 
 export default App;
+
 
 // const isAuthenticated = () => {
 //   const token = localStorage.getItem('token');
