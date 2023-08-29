@@ -14,9 +14,10 @@ import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Dashboard from "./pages/dashboard";
+import Chat from "./pages/chat";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: "http://localhost:3001/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -51,6 +52,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard user={user} />} />
+            <Route path="/chat" element={<Chat />} /> {/* Add the Chat route */}
           </Routes>
         </div>
       </Router>

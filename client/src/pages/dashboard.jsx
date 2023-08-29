@@ -16,7 +16,7 @@ const projects = [
   {
     id: 2,
     imageUrl: "",
-    link: "/homepage2",
+    link: "/chat",
     title: "Chat",
   },
   {
