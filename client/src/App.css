@@ -113,7 +113,18 @@ input {
 
 /* Navbar */
 
-/* Navbar.css */
+.navbar-container {
+  align-items: center; /* Vertically center the items */
+  padding-left: 20px; /* Adjust the padding to move the entire content to the right */
+}
+
+
+.crown-image {
+  display: flex;
+  width: 40px; /* Adjust the width as needed */
+  height: auto;
+  margin-left: 20px; /* Add margin to separate the crown image from the links */
+}
 
 .navbar-container {
   position: fixed;
@@ -164,4 +175,85 @@ input {
   max-width: 300%;
   height: auto;
 }
+
+/* MessagingApp.css */
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: #f0f0f0;
+}
+
+.messaging-app {
+  display: flex;
+  width: 800px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-list {
+  flex: 1;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.conversation-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.conversation-item:hover {
+  background-color: #f0f0f0;
+}
+
+.conversation-item.selected {
+  background-color: #ddd;
+}
+
+.chat-window {
+  flex: 3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.message {
+  margin: 10px 0;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.chat-input button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #0056b3;
+}
+
 
