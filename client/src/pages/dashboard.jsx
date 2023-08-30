@@ -34,7 +34,7 @@ const projects = [
   {
     id: 5,
     imageUrl: "url_to_your_image2",
-    link: "/homepage2",
+    link: "/email",
     title: "E-Mail",
   },
   {
