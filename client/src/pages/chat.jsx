@@ -12,15 +12,14 @@ function MessagingApp() {
   ];
 
   const handleConversationClick = (conversationId) => {
-    setSelectedConversation(conversationId);
-    // Fetch messages for the selected conversation from the backend
-    // Set messages using setMessages
+   setMessages([currentMessage,...messages])
   };
 
   const handleSendMessage = () => {
     // Send the currentMessage to the backend
     // Update messages using setMessages
     setCurrentMessage('');
+    handleConversationClick();
   };
 
   return (
@@ -41,8 +40,8 @@ function MessagingApp() {
           <div className="message-list">
             {messages.map((message) => (
               <div key={message.id} className="message">
-                <strong>{message.user}: </strong>
-                {message.content}
+                {/* <strong>{message.user}: </strong> */}
+                {message}
               </div>
             ))}
           </div>

@@ -41,7 +41,7 @@ export const Login = () => {
     <div className="login-container">
         {data ? (
         <p>
-          Success! Click here to get to your dashoard <Link to="/dashboard">back to the homepage.</Link>
+          Success! Click here to get to your dashoard <Link to="/dashboard">Dashboard</Link>
         </p>
       ) : (
       <form onSubmit={handleSubmit}>
@@ -70,34 +70,12 @@ export const Login = () => {
         <button className="login-button">Login</button>
       </form>
       )}
-      <button
-        // onClick={() => props.onFormSwitch("register")}
-        className="switch-button"
-      >
-        Don't have an account? Register here.
-      </button>
+    {error && <div>{error.message}</div>}
+
+<button type="submit" className="switch-button">
+</button>
     </div>
   );
 };
 
 export default Login;
-
-// try {
-//     // Make an API request to your authentication endpoint
-//     const response = await fetch('/api/login', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ email, pass }),
-//     });
-
-//     if (response.ok) {
-//       const { token } = await response.json();
-
-//       // Store the token in local storage or a state management solution
-//       localStorage.setItem('token', token);
-//     }
-//   } catch (error) {
-//     console.error('Login failed:', error);
-//   }

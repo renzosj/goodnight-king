@@ -33,6 +33,7 @@ export const Register = () => {
       const { data } = await signUp({
         variables: { ...formState },
       });
+      console.log(data.signUp.token);
       Auth.login(data.signUp.token);
     } catch (err) {
       console.error(err);
@@ -43,7 +44,7 @@ export const Register = () => {
     <div className="register-container">
       {data ? (
         <p>
-          Success! You may now head <Link to="/">back to the homepage.</Link>
+          Success! You may now head <Link to="/login"></Link>
         </p>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -83,12 +84,12 @@ export const Register = () => {
             value={formState.password}
             onChange={handleChange}
           />
-          <button className="register-button">Register</button>
+          <button type="submit"  className="register-button">Register</button>
         </form>
       )}
       {error && <div>{error.message}</div>}
 
-      <button type="submit" className="switch-button">
+      <button  className="switch-button">
         Already have an account? Login here.
       </button>
     </div>

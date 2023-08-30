@@ -15,6 +15,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Dashboard from "./pages/dashboard";
 import Chat from "./pages/chat";
+import Email from "./pages/email";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
@@ -53,6 +54,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard user={user} />} />
             <Route path="/chat" element={<Chat />} /> {/* Add the Chat route */}
+            <Route path="/email" element={<Email />}  />
           </Routes>
         </div>
       </Router>
