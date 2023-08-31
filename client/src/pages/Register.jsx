@@ -44,7 +44,7 @@ export const Register = () => {
     <div className="register-container">
       {data ? (
         <p>
-          Success! You may now head <Link to="/login"></Link>
+          Success! You may now head <Link to="/login">login page</Link>
         </p>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -100,7 +100,7 @@ export const Register = () => {
       {error && <div>{error.message}</div>}
 
       <button className="switch-button">
-        Already have an account? Login here.
+        Already have an account? <Link to="/login">Login here.</Link>
       </button>
     </div>
   );
