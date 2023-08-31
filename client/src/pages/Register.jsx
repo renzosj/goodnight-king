@@ -44,53 +44,63 @@ export const Register = () => {
     <div className="register-container">
       {data ? (
         <p>
-          Success! You may now head <Link to="/login"></Link>
+          Success! You may now head <Link to="/login">login page</Link>
         </p>
       ) : (
         <form onSubmit={handleSubmit}>
-          <label htmlFor="userName">Username</label>
-          <input
-            className="form-input"
-            placeholder="Your Username"
-            name="userName"
-            type="text"
-            value={formState.userName}
-            onChange={handleChange}
-          />
-          <label htmlFor="firstName">First Name</label>
-          <input
-            className="form-input"
-            placeholder="First Name"
-            name="firstName"
-            type="text"
-            value={formState.firstName}
-            onChange={handleChange}
-          />
-          <label htmlFor="email">E-mail</label>
-          <input
-            className="form-input"
-            placeholder="Your email"
-            name="email"
-            type="email"
-            value={formState.email}
-            onChange={handleChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            className="form-input"
-            placeholder="******"
-            name="password"
-            type="password"
-            value={formState.password}
-            onChange={handleChange}
-          />
-          <button type="submit"  className="register-button">Register</button>
+          <label htmlFor="userName">
+            Username
+            <input
+              className="form-input"
+              placeholder="Your Username"
+              name="userName"
+              type="text"
+              value={formState.userName}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="firstName">
+            First Name
+            <input
+              className="form-input"
+              placeholder="First Name"
+              name="firstName"
+              type="text"
+              value={formState.firstName}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="email">
+            E-mail
+            <input
+              className="form-input"
+              placeholder="Your email"
+              name="email"
+              type="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="password">
+            Password
+            <input
+              className="form-input"
+              placeholder="******"
+              name="password"
+              type="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+          </label>
+          <button type="submit" className="register-button">
+            Register
+          </button>
         </form>
       )}
       {error && <div>{error.message}</div>}
 
-      <button  className="switch-button">
-        Already have an account? Login here.
+      <button className="switch-button">
+        Already have an account? <Link to="/login">Login here.</Link>
       </button>
     </div>
   );

@@ -34,26 +34,26 @@ const projects = [
 ];
 
 function renderProjects() {
-    return projects.map((project) => (
-      <div key={project.id} className="project-box">
-        <a href={project.link}>
-          <img src={project.imageUrl} alt={project.title} />
-        </a>
-        <h3>{project.title}</h3> {/* Include the label */}
+  return projects.map((project) => (
+    <div key={project.id} className="project-box">
+      <a href={project.link}>
+        <img src={project.imageUrl} alt={project.title} />
+      </a>
+      <h3>{project.title}</h3> {/* Include the label */}
+    </div>
+  ));
+}
+
+const Dashboard = ({ user }) => {
+  return (
+    <div className="dashboard-container">
+      <h1>Welcome to your dashboard, {user.first_name}!</h1>
+
+      <div className="container mt-5">
+        <div className="projects-container">{renderProjects()}</div>
       </div>
-    ));
-  }
-  
-  const Dashboard = ({ user }) => {
-    return (
-      <div className="dashboard-container">
-        <h1>Welcome to your dashboard, {user.first_name}!</h1>
-  
-        <div className="container mt-5">
-          <div className="projects-container">{renderProjects()}</div>
-        </div>
-      </div>
-    );
-  };
-  
-  export default Dashboard;
+    </div>
+  );
+};
+
+export default Dashboard;

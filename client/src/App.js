@@ -13,14 +13,14 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Dashboard from "./pages/dashboard";
-import Chat from "./pages/chat";
+import MessagingApp from "./pages/chat";
 import Email from "./pages/email";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -55,8 +55,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard user={user} />} />
-            <Route path="/chat" element={<Chat />} /> {/* Add the Chat route */}
-            <Route path="/email" element={<Email />}  />
+            <Route path="/chat" element={<MessagingApp />} />{" "}
+            {/* Add the Chat route */}
+            <Route path="/email" element={<Email />} />
           </Routes>
           <Footer />
         </div>
@@ -66,7 +67,6 @@ function App() {
 }
 
 export default App;
-
 
 // const isAuthenticated = () => {
 //   const token = localStorage.getItem('token');
