@@ -11,11 +11,13 @@ import "./App.css";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Dashboard from "./pages/dashboard";
 import MessagingApp from "./pages/chat";
 import Email from "./pages/email";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -57,6 +59,7 @@ function App() {
             {/* Add the Chat route */}
             <Route path="/email" element={<Email />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

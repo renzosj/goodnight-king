@@ -1,17 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CrownImage from "../images/gnk-logo-proto-01.png";
 
 const Navbar = () => {
   return (
     <nav className="navbar-container">
+      <div className="initials">
+        <Link to="/" className="navbar-link">
+          GNK
+        </Link>
+      </div>
       <ul className="navbar-list">
-        <li className="navbar-item">
-          <Link to="/" className="navbar-link">
-            {" "}
-            <img src={CrownImage} alt="Crown" className="crown-image" />
-          </Link>
-        </li>
         <li className="navbar-item">
           <Link to="/login" className="navbar-link">
             Login

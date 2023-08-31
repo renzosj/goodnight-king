@@ -1,21 +1,14 @@
 import React from "react";
 
-import image1 from "../images/house_1f3e0.png";
-import image2 from "../images/gear_2699-fe0f.png";
-import image3 from "../images/speech-balloon_1f4ac.png";
-import image4 from "../images/house_1f3e0.png";
+import image1 from "../images/speaking-head-in-silhouette_1f5e3-fe0f.png";
+import image2 from "../images/gear_2699-fe0f.png"; 
+import image3 from "../images/speech-balloon_1f4ac.png"; 
+import image4 from "../images/e-mail_1f4e7.png";  
 
 const projects = [
   {
-    id: 1,
-    imageUrl: image1,
-    link: "/homepage1",
-    title: "Homepage 1",
-  },
-
-  {
     id: 2,
-    imageUrl: "",
+    imageUrl: image1,
     link: "/chat",
     title: "Chat",
   },
@@ -26,24 +19,18 @@ const projects = [
     title: "Create Message",
   },
   {
+    id: 5,
+    imageUrl: image4,
+    link: "/email",
+    title: "E-Mail",
+  },
+  {
     id: 4,
     imageUrl: image2,
     link: "/homepage1",
     title: "Profile Settings",
   },
-  {
-    id: 5,
-    imageUrl: "url_to_your_image2",
-    link: "/email",
-    title: "E-Mail",
-  },
-  {
-    id: 6,
-    imageUrl: "url_to_your_image3",
-    link: "/homepage3",
-    title: "Filler Box",
-  },
-  // Add more projects as needed
+  
 ];
 
 function renderProjects() {
