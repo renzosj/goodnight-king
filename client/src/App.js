@@ -12,9 +12,9 @@ import "./App.css";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Dashboard from "./pages/dashboard";
-import MessagingApp from "./pages/chat";
-import Email from "./pages/email";
+import Dashboard from "./pages/Dashboard";
+import MessagingApp from "./pages/Chat";
+import Email from "./pages/Email";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";

@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function MessagingApp() {
   const [selectedConversation, setSelectedConversation] = useState(null);
-  const [currentMessage, setCurrentMessage] = useState('');
+  const [currentMessage, setCurrentMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
   const conversations = [
-    { id: 1, name: 'User 1' },
-    { id: 2, name: 'User 2' },
+    { id: 1, name: "User 1" },
+    { id: 2, name: "User 2" },
     // ...add more conversations
   ];
 
   const handleConversationClick = (conversationId) => {
-   setMessages([currentMessage,...messages])
+    setMessages([currentMessage, ...messages]);
   };
 
   const handleSendMessage = () => {
     // Send the currentMessage to the backend
     // Update messages using setMessages
-    setCurrentMessage('');
+    setCurrentMessage("");
     handleConversationClick();
   };
 
@@ -29,7 +29,9 @@ function MessagingApp() {
           {conversations.map((conversation) => (
             <div
               key={conversation.id}
-              className={`conversation-item ${selectedConversation === conversation.id ? 'selected' : ''}`}
+              className={`conversation-item ${
+                selectedConversation === conversation.id ? "selected" : ""
+              }`}
               onClick={() => handleConversationClick(conversation.id)}
             >
               {conversation.name}
@@ -61,24 +63,6 @@ function MessagingApp() {
 }
 
 export default MessagingApp;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React from 'react';
 // import { useQuery, useMutation, useSubscription } from '@apollo/client';

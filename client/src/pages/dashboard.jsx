@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import image1 from "../images/speaking-head-in-silhouette_1f5e3-fe0f.png";
 import image2 from "../images/gear_2699-fe0f.png";
@@ -35,9 +36,9 @@ const projects = [
 function renderProjects() {
   return projects.map((project) => (
     <div key={project.id} className="project-box">
-      <a href={project.link}>
+      <Link to={project.link}>
         <img src={project.imageUrl} alt={project.title} />
-      </a>
+      </Link>
       <h3>{project.title}</h3> {/* Include the label */}
     </div>
   ));
