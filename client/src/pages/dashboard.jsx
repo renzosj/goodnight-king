@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import image1 from "../images/speaking-head-in-silhouette_1f5e3-fe0f.png";
-import image2 from "../images/gear_2699-fe0f.png"; 
-import image3 from "../images/speech-balloon_1f4ac.png"; 
-import image4 from "../images/e-mail_1f4e7.png";  
+import image2 from "../images/gear_2699-fe0f.png";
+import image3 from "../images/speech-balloon_1f4ac.png";
+import image4 from "../images/e-mail_1f4e7.png";
 
 const projects = [
   {
@@ -30,15 +31,14 @@ const projects = [
     link: "/homepage1",
     title: "Profile Settings",
   },
-  
 ];
 
 function renderProjects() {
   return projects.map((project) => (
     <div key={project.id} className="project-box">
-      <a href={project.link}>
+      <Link to={project.link}>
         <img src={project.imageUrl} alt={project.title} />
-      </a>
+      </Link>
       <h3>{project.title}</h3> {/* Include the label */}
     </div>
   ));
