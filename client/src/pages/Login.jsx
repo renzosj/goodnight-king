@@ -39,41 +39,41 @@ export const Login = () => {
 
   return (
     <div className="login-container">
-        {data ? (
+      {data ? (
         <p>
-          Success! Click here to get to your dashoard <Link to="/dashboard">Dashboard</Link>
+          Success! Click here to get to your dashoard{" "}
+          <Link to="/dashboard">Dashboard</Link>
         </p>
       ) : (
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label htmlFor="email">E-mail</label>
-          <input
-            type="email"
-            placeholder="youremail@gmail.com"
-            id="email"
-            name="email"
-            value={formState.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="password">Password</label>
-          <input
-            value={formState.password}
-            onChange={handleChange}
-            type="password"
-            placeholder="********"
-            id="password"
-            name="password"
-          />
-        </div>
-        <button className="login-button">Login</button>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="email"
+              placeholder="youremail@gmail.com"
+              id="email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="input-container">
+            <label htmlFor="password">Password</label>
+            <input
+              value={formState.password}
+              onChange={handleChange}
+              type="password"
+              placeholder="********"
+              id="password"
+              name="password"
+            />
+          </div>
+          <button className="login-button">Login</button>
+        </form>
       )}
-    {error && <div>{error.message}</div>}
+      {error && <div>{error.message}</div>}
 
-<button type="submit" className="switch-button">
-</button>
+      <button type="submit" className="switch-button"></button>
     </div>
   );
 };

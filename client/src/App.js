@@ -55,8 +55,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard user={user} />} />
-            <Route path="/chat" element={<MessagingApp />} />{" "}
-            {/* Add the Chat route */}
+            <Route path="/chat" element={<MessagingApp />} />
             <Route path="/email" element={<Email />} />
           </Routes>
           <Footer />

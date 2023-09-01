@@ -1,9 +1,9 @@
 import React from "react";
 
 import image1 from "../images/speaking-head-in-silhouette_1f5e3-fe0f.png";
-import image2 from "../images/gear_2699-fe0f.png"; 
-import image3 from "../images/speech-balloon_1f4ac.png"; 
-import image4 from "../images/e-mail_1f4e7.png";  
+import image2 from "../images/gear_2699-fe0f.png";
+import image3 from "../images/speech-balloon_1f4ac.png";
+import image4 from "../images/e-mail_1f4e7.png";
 
 const projects = [
   {
@@ -30,7 +30,6 @@ const projects = [
     link: "/homepage1",
     title: "Profile Settings",
   },
-  
 ];
 
 function renderProjects() {
